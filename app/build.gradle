@@ -13,7 +13,8 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            //runProguard false     //Used for Android Studio before version 1
+            minifyEnabled false     //Used for Android Studio after version 1
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
