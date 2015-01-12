@@ -1,12 +1,16 @@
 package com.da401a.mealplanner;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 public class MainActivity extends Activity {
+    private FragmentManager fragmentManager;
+    private RecipesFragment recipesFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,12 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_recipes) {
+            fragmentManager = getFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            recipesFragment = new RecipesFragment();
+            transaction.replace(R.id.container_main, recipesFragment);
+            transaction.commit();
             return true;
         }
 
