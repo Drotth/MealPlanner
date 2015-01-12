@@ -70,4 +70,10 @@ public class RecipesFragment extends Fragment {
         super.onPause();
         dbController.close();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        dbController.close();
+    }
 }
