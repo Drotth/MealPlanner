@@ -2,6 +2,7 @@ package com.da401a.mealplanner;
 
 
 import android.app.FragmentTransaction;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.ListView;
  * A simple {@link Fragment} subclass.
  */
 public class RecipesFragment extends Fragment {
+    private DBController dbController;
     private ListView listRecipes;
     private RecipesAdapter recipesAdapter;
 
@@ -33,7 +35,7 @@ public class RecipesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipes, container, false);
         listRecipes = (ListView) view.findViewById(R.id.listViewRecipes);
-        //listRecipes.setAdapter(recipesAdapter);
+        listRecipes.setAdapter(recipesAdapter);
         Button newRecipe = (Button) view.findViewById(R.id.buttonNewRecipe);
         newRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,5 +50,24 @@ public class RecipesFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        dbController = new DBController(getActivity());
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        dbController.open();
+        Cursor c = dbController.getRecipes();
+        recipesAdapter = new RecipesAdapter(getActivity(), c, true);
+        listRecipes.setAdapter(recipesAdapter);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        dbController.close();
+    }
 }

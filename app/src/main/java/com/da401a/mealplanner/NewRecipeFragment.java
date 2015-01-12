@@ -52,7 +52,7 @@ public class NewRecipeFragment extends Fragment {
                     Toast.makeText(getActivity(), "You have to fill in all fields",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    dbController.dataRecipe(newName, newMeat, newAcc, newVeg, newDesc, newDrink);
+                    dbController.dataRecipe(newName, newDesc, newMeat, newAcc, newVeg, newDrink);
                     getFragmentManager().popBackStackImmediate();
                 }
             }
