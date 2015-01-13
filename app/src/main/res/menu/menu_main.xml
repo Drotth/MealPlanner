@@ -4,4 +4,7 @@
 
     <item android:id="@+id/action_recipes" android:title="@string/action_recipes"
         android:orderInCategory="100" android:showAsAction="never" />
+
+    <item android:id="@+id/shoplist" android:title="@string/shopping_list"
+        android:orderInCategory="100" android:showAsAction="never"/>
 </menu>
