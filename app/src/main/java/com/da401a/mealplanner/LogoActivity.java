@@ -1,6 +1,7 @@
 package com.da401a.mealplanner;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -37,18 +38,22 @@ public class LogoActivity extends Activity implements Animation.AnimationListene
 //        });
 
 
-        //Own thingy ma-jingie
+        //Own thingy ma-jiggy
         final float centerX = image1.getWidth() / 2.0f;
         final float centerY = image1.getHeight() / 2.0f;
 
         FlipAnimation rotation = new FlipAnimation(0, 90, centerX, centerY);
         rotation.setDuration(500);
-        //rotation.setStartOffset(1000);
+        rotation.setStartOffset(1000);
         rotation.setFillAfter(true);
         rotation.setInterpolator(new AccelerateInterpolator());
         rotation.setAnimationListener(this);
 
         image1.startAnimation(rotation);
+
+        Intent mainIntent = new Intent(LogoActivity.this, MainActivity.class);
+        LogoActivity.this.startActivity(mainIntent);
+        LogoActivity.this.finish();
 
     }
 
@@ -62,7 +67,7 @@ public class LogoActivity extends Activity implements Animation.AnimationListene
         final FlipAnimation rotation =
                 new FlipAnimation(start, end, centerX, centerY);
         rotation.setDuration(500);
-        rotation.setStartOffset(1000);
+        //rotation.setStartOffset(1000);
         rotation.setFillAfter(true);
         rotation.setInterpolator(new AccelerateInterpolator());
         rotation.setAnimationListener(new DisplayNextView(isFirstImage, image1, image2));
@@ -84,8 +89,8 @@ public class LogoActivity extends Activity implements Animation.AnimationListene
     public void onAnimationEnd(Animation animation) {
         //image1.post(new SwapViews(isFirstImage, image1, image2));
 
-        final float centerX = image1.getWidth() / 2.0f;
-        final float centerY = image1.getHeight() / 2.0f;
+        final float centerX = image2.getWidth() / 2.0f;
+        final float centerY = image2.getHeight() / 2.0f;
         FlipAnimation rotation;
 
         image2.setVisibility(View.VISIBLE);
