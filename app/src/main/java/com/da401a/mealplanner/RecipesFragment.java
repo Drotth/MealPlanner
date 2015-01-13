@@ -42,6 +42,7 @@ public class RecipesFragment extends Fragment {
             public void onClick(View v) {
                 NewRecipeFragment newRecipeFragment = NewRecipeFragment.newInstance();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_anim, R.anim.exit_anim);
                 transaction.replace(R.id.container_main, newRecipeFragment);
                 transaction.addToBackStack("New recipe");
                 transaction.commit();

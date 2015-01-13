@@ -1,6 +1,5 @@
 package com.da401a.mealplanner;
 
-
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -52,8 +51,8 @@ public class NewRecipeFragment extends Fragment {
                     Toast.makeText(getActivity(), "You have to fill in all fields",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    dbController.dataRecipe(newName, newDesc, newMeat, newAcc, newVeg, newDrink);
-                    getFragmentManager().popBackStackImmediate();
+                    dbController.dataRecipe(newName, newDesc, newMeat, newAcc, newVeg, newDrink);;
+                   getFragmentManager().popBackStackImmediate();
                 }
             }
         });
@@ -79,5 +78,9 @@ public class NewRecipeFragment extends Fragment {
         dbController.close();
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        dbController.close();
+    }
 }
