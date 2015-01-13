@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/logoContainer"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <include android:id="@+id/notelist" layout="@layout/first_view" />
-    <include android:id="@+id/notelist" layout="@layout/second_view" />
-
-</FrameLayout>
