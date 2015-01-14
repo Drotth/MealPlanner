@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddMealFragment extends Fragment {
+public class AddMealFragment extends Fragment implements AdapterView.OnItemSelectedListener{
     private DBController dbController;
     private EditText date, recipe;
     private ArrayList<String> recipesList;
@@ -98,7 +98,22 @@ public class AddMealFragment extends Fragment {
                 android.R.layout.simple_list_item_1,recipesList);
         adp1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adp1);
+        spinner.setOnItemSelectedListener(this);
 
+        /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                Toast.makeText(getActivity(), "knas knas",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });*/
+        /*
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -111,7 +126,8 @@ public class AddMealFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
-        });
+        });*/
+
         return view;
     }
 
@@ -149,5 +165,16 @@ public class AddMealFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         dbController.close();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(getActivity(), "knas knas",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
