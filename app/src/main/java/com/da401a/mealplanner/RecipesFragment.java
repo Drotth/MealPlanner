@@ -24,12 +24,6 @@ public class RecipesFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public RecipesFragment newInstance(){
-        RecipesFragment fragment = new RecipesFragment();
-        return fragment;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,12 +34,12 @@ public class RecipesFragment extends Fragment {
         newRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewRecipeFragment newRecipeFragment = NewRecipeFragment.newInstance();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.enter_anim, R.anim.exit_anim);
-                transaction.replace(R.id.container, newRecipeFragment);
-                transaction.addToBackStack("New recipe");
-                transaction.commit();
+                Fragment newFragment = new NewRecipeFragment();
+                FragmentTransaction ftNewRecipe = getFragmentManager().beginTransaction();
+                ftNewRecipe.replace(R.id.container,newFragment);
+                ftNewRecipe.addToBackStack(null);
+                ftNewRecipe.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ftNewRecipe.commit();
             }
         });
         return view;

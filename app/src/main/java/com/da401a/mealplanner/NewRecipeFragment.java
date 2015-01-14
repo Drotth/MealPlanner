@@ -22,11 +22,6 @@ public class NewRecipeFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static NewRecipeFragment newInstance(){
-        NewRecipeFragment fragment = new NewRecipeFragment();
-        return fragment;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
