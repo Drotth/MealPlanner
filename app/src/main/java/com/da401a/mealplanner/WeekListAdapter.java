@@ -113,13 +113,13 @@ public class WeekListAdapter extends BaseExpandableListAdapter {
         TextView dayIcon = (TextView) convertView.findViewById(R.id.dayItemIcon);
         TextView dayChild = (TextView) convertView.findViewById(R.id.dayItem);
         switch (child.getDay()){
-            case 1: dayIcon.setText("Su"); break;
-            case 2: dayIcon.setText("Mo"); break;
-            case 3: dayIcon.setText("Tu"); break;
-            case 4: dayIcon.setText("We"); break;
-            case 5: dayIcon.setText("Th"); break;
-            case 6: dayIcon.setText("Fr"); break;
-            case 7: dayIcon.setText("Sa"); break;
+            case 1: dayIcon.setText("S"); break;
+            case 2: dayIcon.setText("M"); break;
+            case 3: dayIcon.setText("T"); break;
+            case 4: dayIcon.setText("W"); break;
+            case 5: dayIcon.setText("T"); break;
+            case 6: dayIcon.setText("F"); break;
+            case 7: dayIcon.setText("S"); break;
         }
         dayChild.setText(child.getRecipe());
         return convertView;
