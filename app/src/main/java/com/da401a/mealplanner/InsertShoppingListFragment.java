@@ -45,8 +45,15 @@ public class InsertShoppingListFragment extends Fragment {
             public void onClick(View v) {
                 String newProduct = product.getText().toString();
                 String newDate = date.getText().toString();
-                dbController.dataIntoShoppingList(newProduct, newDate);
-                getFragmentManager().popBackStackImmediate();
+                if(newProduct.isEmpty() || newDate.isEmpty()){
+                    Toast.makeText(getActivity(), "You have to fill in all fields",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    dbController.dataIntoShoppingList(newProduct, newDate);
+                    getFragmentManager().popBackStackImmediate();
+                }
+
             }
         });
 
@@ -77,6 +84,12 @@ public class InsertShoppingListFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
+        dbController.close();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
         dbController.close();
     }
 }

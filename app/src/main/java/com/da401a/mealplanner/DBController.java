@@ -96,4 +96,24 @@ public class DBController extends SQLiteOpenHelper {
                 new String[]{"_id", "ProductToBuy", "DateToBuy"},
                 null, null, null, null, null);
     }
+
+    public void removeShoppinglist(){
+        getWritableDatabase();
+        db.delete(TABLE_SHOPPINGLIST, null, null);
+    }
+
+    public boolean deleteRowShoppinglist(long rowId){
+        String where = "_id =" + rowId;
+        return db.delete(TABLE_SHOPPINGLIST, where, null) != 0;
+    }
+
+    public void removeRecipes(){
+        getWritableDatabase();
+        db.delete(TABLE_RECIPES, null, null);
+    }
+
+    public boolean deleteRowRecipe(long rowId){
+        String where = "_id =" + rowId;
+        return db.delete(TABLE_RECIPES, where, null) != 0;
+    }
 }
