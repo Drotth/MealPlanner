@@ -92,12 +92,13 @@ public class DBController extends SQLiteOpenHelper {
         return db.insert("Shoppinglist",null,values);
     }
 
-    public long dataIntoWeekMeal(String date) {
+    public long dataIntoWeekMeal(String date, String meal) {
         // Create a new map of values, where column names are the keys
 
         ContentValues values = new ContentValues();
 
-        values.put("DateToEat",date);
+        values.put("DateToEat", date);
+        values.put("RecipeName",meal);
 
         // Insert the new row, returning the primary key value of the new row
         return db.insert("Weekmeal",null,values);
