@@ -23,6 +23,7 @@ public class WeekFragment extends Fragment {
     HashMap<String, List<String>> listDataDays;
 
     private DBController dbController;
+    ArrayList<RecipeDay> mainList = new ArrayList<RecipeDay>();
 
 
     @Override
@@ -30,6 +31,8 @@ public class WeekFragment extends Fragment {
         super.onCreate(savedInstanceState);
         dbController = new DBController(getActivity());
         dbController.open();
+        prepareListData();
+        weekListAdapter = new WeekListAdapter(getActivity(), mainList);
     }
 
     @Override
@@ -38,69 +41,31 @@ public class WeekFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_week, container, false);
 
         weekListView = (ExpandableListView) view.findViewById(R.id.weeksList);
-        prepareListData();
-        weekListAdapter = new WeekListAdapter(getActivity(), listDataWeeks, listDataDays);
         weekListView.setAdapter(weekListAdapter);
 
         return view;
     }
 
-    private void prepareListData() {
-        ArrayList<String> tempWeeks = new ArrayList<String>();
-        ArrayList<String> tempDays = new ArrayList<String>();
-        ArrayList<String> tempRecipes = new ArrayList<String>();
+    @Override
+    public void onPause(){
+        super.onPause();
+        dbController.close();
+    }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        dbController.open();
+    }
+
+    private void prepareListData() {
         Cursor c = dbController.getWeekMeal();
 
         if(c != null && c.moveToFirst());
         do {
             try {
-                tempWeeks.add(c.getString(2));
-                tempDays.add(c.getString(3));
-                tempRecipes.add(c.getString(4));
+                mainList.add(new RecipeDay(c.getInt(2), c.getInt(3), c.getString(4)));
             } catch (CursorIndexOutOfBoundsException exception){}
         }while (c.moveToNext());
-
-        listDataWeeks = new ArrayList<String>();
-        listDataDays = new HashMap<String, List<String>>();
-
-        listDataWeeks.add("Weeks");
-        listDataWeeks.add("Days");
-        listDataWeeks.add("Recipes");
-
-        listDataDays.put(listDataWeeks.get(0), tempWeeks);
-        listDataDays.put(listDataWeeks.get(1), tempDays);
-        listDataDays.put(listDataWeeks.get(2), tempRecipes);
-
-
-//        listDataWeeks = new ArrayList<String>();
-//        listDataDays = new HashMap<String, List<String>>();
-//
-//        listDataWeeks.add("Vecka 3");
-//        listDataWeeks.add("Vecka 4");
-//        listDataWeeks.add("Vecka 5");
-//
-//        List<String> Vecka_3 = new ArrayList<String>();
-//        Vecka_3.add("Korv Stroganoff");
-//        Vecka_3.add("Kötbullar med mos");
-//        Vecka_3.add("Lugnt, mamma fixar");
-//        Vecka_3.add("Marabou hela dagen");
-//        Vecka_3.add("Sibylla");
-//        Vecka_3.add("Kanske dags för riktig mat?");
-//        Vecka_3.add(".. Not really");
-//
-//        List<String> Vecka_4 = new ArrayList<String>();
-//        Vecka_4.add("Ny vecka, nya vanor!");
-//        Vecka_4.add("Köttbullar med mos");
-//        Vecka_4.add("Korv stroganoff");
-//        Vecka_4.add("Nudlar");
-//
-//        List<String> Vecka_5 = new ArrayList<String>();
-//        Vecka_5.add("Nudlar");
-//        Vecka_5.add("Mer nudlar..");
-//
-//        listDataDays.put(listDataWeeks.get(0), Vecka_3);
-//        listDataDays.put(listDataWeeks.get(1), Vecka_4);
-//        listDataDays.put(listDataWeeks.get(2), Vecka_5);
     }
 }
