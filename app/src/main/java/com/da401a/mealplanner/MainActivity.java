@@ -11,6 +11,8 @@ import android.view.ViewConfiguration;
 import java.lang.reflect.Field;
 
 public class MainActivity extends Activity {
+    private FragmentManager fragmentManager;
+    private RecipesFragment recipesFragment;
 
     FragmentManager fm;
     WeekFragment weeks;
@@ -46,12 +48,18 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.menu_about) {
-            return true;
+        switch (item.getItemId()){
+            case R.id.menu_about:
+                break;
+            case R.id.action_recipes:
+                fragmentManager = getFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                recipesFragment = new RecipesFragment();
+                transaction.replace(R.id.container, recipesFragment);
+                transaction.commit();
+                break;
         }
-
+        
         return super.onOptionsItemSelected(item);
     }
 }

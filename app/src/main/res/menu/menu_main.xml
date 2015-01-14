@@ -2,8 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
+    <item android:id="@+id/action_recipes"
+        android:title="@string/action_recipes"
+        android:orderInCategory="1"
+        android:showAsAction="never" />
+
     <item android:id="@+id/menu_about"
         android:title="@string/menu_about"
-        android:orderInCategory="100"
+        android:orderInCategory="2"
         android:showAsAction="never" />
 </menu>
