@@ -38,6 +38,7 @@ public class RecipesFragment extends Fragment implements ListView.OnItemLongClic
             public void onClick(View v) {
                 Fragment newFragment = new NewRecipeFragment();
                 FragmentTransaction ftNewRecipe = getFragmentManager().beginTransaction();
+                ftNewRecipe.setCustomAnimations(R.anim.enter_anim, R.anim.exit_anim);
                 ftNewRecipe.replace(R.id.container,newFragment);
                 ftNewRecipe.addToBackStack(null);
                 ftNewRecipe.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);

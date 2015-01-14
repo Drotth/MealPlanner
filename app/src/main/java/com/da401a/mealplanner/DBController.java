@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 /**
  * Created by Mattias and Sebastian on 2015-01-12.
  */
@@ -15,9 +17,10 @@ public class DBController extends SQLiteOpenHelper {
     private static final String NAME = "MEALPLANNER_DATABASE";
     private static final String TABLE_SHOPPINGLIST ="Shoppinglist";
     private static final String TABLE_RECIPES = "Recipes";
+    private static final String TABLE_WEEKMEAL = "Weekmeal";
     private static final int VERSION =1;
 
-    private static final String CREATETABLE_RECIPES = "CREATE TABLE Recipes"+
+    private static final String CREATETABLE_RECIPES = "CREATE TABLE " + TABLE_RECIPES +
             "(_id integer primary key autoincrement, " +
             "Name text not null, " +
             "Desc text not null, " +
@@ -26,15 +29,21 @@ public class DBController extends SQLiteOpenHelper {
             "Veg text not null, " +
             "Drink text not null);";
 
-    private static final String CREATETABLE_SHOPPINGLIST = "CREATE TABLE Shoppinglist"+
+    private static final String CREATETABLE_SHOPPINGLIST = "CREATE TABLE " + TABLE_SHOPPINGLIST+
             "(_id integer primary key autoincrement, " +
             "ProductToBuy text not null, " +
             "DateToBuy text not null);";
+
+    private static final String CREATETABLE_WEEKMEAL = "CREATE TABLE " + TABLE_WEEKMEAL +
+            "(_id integer primary key autoincrement, " +
+            "DateToEat text not null," +
+            "FOREIGN_KEY(Recipes_id) REFERENCES Recipes(_id));";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATETABLE_RECIPES);
         db.execSQL(CREATETABLE_SHOPPINGLIST);
+        db.execSQL(CREATETABLE_WEEKMEAL);
     }
 
     public DBController(Context context) {
@@ -45,6 +54,7 @@ public class DBController extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPES);
         db.execSQL("DROP TABLE IF EXIST" + TABLE_SHOPPINGLIST);
+        db.execSQL("DROP TABLE IF EXIST" + TABLE_WEEKMEAL);
         onCreate(db);
     }
 
@@ -82,18 +92,42 @@ public class DBController extends SQLiteOpenHelper {
         return db.insert("Shoppinglist",null,values);
     }
 
+    public long dataIntoWeekMeal(String date) {
+        // Create a new map of values, where column names are the keys
+
+        ContentValues values = new ContentValues();
+
+        values.put("DateToEat",date);
+
+        // Insert the new row, returning the primary key value of the new row
+        return db.insert("Weekmeal",null,values);
+    }
+
     public Cursor getRecipes() {
         return db.query(
                 "Recipes",
                 new String[]{"_id", "Name", "Desc", "Meat", "Acc", "Veg", "Drink"},
                 null, null, null, null, null);
+    }
 
+    public Cursor getRecipeName(){
+        return db.query(
+                "Recipes",
+                new String[]{"Name"},
+                null, null, null, null, null);
     }
 
     public Cursor getShopList(){
         return db.query(
                 "Shoppinglist",
                 new String[]{"_id", "ProductToBuy", "DateToBuy"},
+                null, null, null, null, null);
+    }
+
+    public Cursor getWeekMeal(){
+        return db.query(
+                "Weekmeal",
+                new String[]{"_id", "DateToEat", "Recipes_id"},
                 null, null, null, null, null);
     }
 
