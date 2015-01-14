@@ -6,14 +6,6 @@
     android:padding="@dimen/activity_horizontal_margin"
     tools:context="com.da401a.mealplanner.AddMealFragment">
 
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/select_meal"
-        android:id="@+id/editTextAddMealSelectMeal"
-        android:layout_gravity="center_horizontal" />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerShowRecipes"
-        android:hint="Bajs"
         android:layout_gravity="center_horizontal" />
 
     <Button
