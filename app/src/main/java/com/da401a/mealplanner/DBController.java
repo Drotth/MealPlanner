@@ -37,13 +37,13 @@ public class DBController extends SQLiteOpenHelper {
     private static final String CREATETABLE_WEEKMEAL = "CREATE TABLE " + TABLE_WEEKMEAL +
             "(_id integer primary key autoincrement, " +
             "DateToEat text not null," +
-            "FOREIGN_KEY(Recipes_id) REFERENCES Recipes(_id));";
+            "RecipeName text not null);";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATETABLE_RECIPES);
         db.execSQL(CREATETABLE_SHOPPINGLIST);
-        //db.execSQL(CREATETABLE_WEEKMEAL);
+        db.execSQL(CREATETABLE_WEEKMEAL);
     }
 
     public DBController(Context context) {
@@ -127,7 +127,7 @@ public class DBController extends SQLiteOpenHelper {
     public Cursor getWeekMeal(){
         return db.query(
                 "Weekmeal",
-                new String[]{"_id", "DateToEat", "Recipes_id"},
+                new String[]{"_id", "DateToEat", "RecipeName"},
                 null, null, null, null, null);
     }
 
