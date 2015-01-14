@@ -18,5 +18,5 @@
     <string name="to_shop">To shop</string>
     <string name="select_meal">Select a meal</string>
     <string name="select_date">Select a date for when to eat</string>
-    <string name="select_other">Recipe not in list? You can add a new one</string>
+    <string name="select_other">Recipe not in list or list empty? You can add a new one</string>
 </resources>
