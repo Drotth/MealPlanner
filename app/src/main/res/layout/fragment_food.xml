@@ -15,5 +15,6 @@
         android:layout_height="match_parent"
         android:id="@+id/listViewShop"
         android:layout_below="@+id/toShop"
-        />
+        android:divider="@color/gray"
+        android:dividerHeight="5dp"/>
 </RelativeLayout>
