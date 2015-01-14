@@ -36,7 +36,7 @@ public class InsertShoppingListFragment extends Fragment {
         View root =  inflater.inflate(R.layout.fragment_insert_shopping_list, container, false);
 
         product = (EditText) root.findViewById(R.id.editText_Product);
-        date = (EditText) root.findViewById(R.id.editText_Date);
+        date = (EditText) root.findViewById(R.id.editTextShoppinglistDate);
 
 
         Button button = (Button) root.findViewById(R.id.create_new_product);
@@ -58,7 +58,7 @@ public class InsertShoppingListFragment extends Fragment {
         });
 
 
-        EditText editDateSelect = (EditText) root.findViewById(R.id.editText_Date);
+        EditText editDateSelect = (EditText) root.findViewById(R.id.editTextShoppinglistDate);
         editDateSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

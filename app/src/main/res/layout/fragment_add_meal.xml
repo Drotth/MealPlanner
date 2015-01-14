@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/select_meal"
-        android:id="@+id/editTextSelectMeal"
+        android:id="@+id/editTextAddMealSelectMeal"
         android:layout_gravity="center_horizontal" />
 
     <EditText
@@ -19,7 +19,13 @@
         android:hint="@string/select_date"
         android:inputType="date"
         android:ems="10"
-        android:id="@+id/editTextSelectDate"
+        android:id="@+id/editTextAddMealSelectDate"
+        android:layout_gravity="center_horizontal" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
         android:layout_gravity="center_horizontal" />
 
     <Button

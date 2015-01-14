@@ -34,8 +34,18 @@ public class DatePickerFragment extends DialogFragment
     public void onDateSet(DatePicker view, int year, int month, int day) {
         String selectedDate = Integer.toString(year) + getMonth(month) +
                 Integer.toString(day);
-        EditText editTextDate = (EditText) getActivity().findViewById(R.id.editText_Date);
-        editTextDate.setText(selectedDate);
+        Fragment fragment = getActivity().getFragmentManager().findFragmentById(R.id.container);
+        if (fragment instanceof InsertShoppingListFragment) {
+            // do something with f
+            //f.doSomething();
+            EditText editTextDateShoppinglist = (EditText) getActivity().findViewById(R.id.editTextShoppinglistDate);
+            editTextDateShoppinglist.setText(selectedDate);
+        }
+        else if (fragment instanceof AddMealFragment){
+            EditText editTextAddMeal = (EditText) getActivity().findViewById(R.id.editTextAddMealSelectDate);
+            editTextAddMeal.setText(selectedDate);
+        }
+
     }
 
     private String getMonth(int month){

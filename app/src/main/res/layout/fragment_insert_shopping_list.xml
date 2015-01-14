@@ -13,12 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Product"
-        android:layout_below="@+id/editText_Date"
+        android:layout_below="@+id/editTextShoppinglistDate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:id="@+id/editText_Date"
+        android:id="@+id/editTextShoppinglistDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Date to buy"/>

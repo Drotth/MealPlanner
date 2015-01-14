@@ -80,11 +80,6 @@ public class RecipesFragment extends Fragment implements ListView.OnItemLongClic
         Cursor c = dbController.getRecipes();
         recipesAdapter = new RecipesAdapter(getActivity(), c, true);
         listRecipes.setAdapter(recipesAdapter);
-
-        /*dbController.deleteRowShoppinglist(id);
-        Cursor c = dbController.getShopList();
-        sAdapter = new ShoppingListAdapter(getActivity(), c, true);
-        shoppingList.setAdapter(sAdapter);*/
         return false;
     }
 }
