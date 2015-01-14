@@ -7,8 +7,18 @@
         android:orderInCategory="1"
         android:showAsAction="never" />
 
+    <item android:id="@+id/shoplist"
+        android:title="@string/shopping_list"
+        android:orderInCategory="2"
+        android:showAsAction="never"/>
+
+    <item android:id="@+id/add_meal"
+        android:title="@string/add_meal"
+        android:orderInCategory="3"
+        android:showAsAction="never"/>
+
     <item android:id="@+id/menu_about"
         android:title="@string/menu_about"
-        android:orderInCategory="2"
+        android:orderInCategory="4"
         android:showAsAction="never" />
 </menu>

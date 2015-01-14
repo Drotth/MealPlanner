@@ -8,6 +8,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -15,7 +16,7 @@ import android.widget.ListView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecipesFragment extends Fragment {
+public class RecipesFragment extends Fragment implements ListView.OnItemLongClickListener{
     private DBController dbController;
     private ListView listRecipes;
     private RecipesAdapter recipesAdapter;
@@ -24,27 +25,24 @@ public class RecipesFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public RecipesFragment newInstance(){
-        RecipesFragment fragment = new RecipesFragment();
-        return fragment;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipes, container, false);
         listRecipes = (ListView) view.findViewById(R.id.listViewRecipes);
         listRecipes.setAdapter(recipesAdapter);
+        listRecipes.setOnItemLongClickListener(this);
         Button newRecipe = (Button) view.findViewById(R.id.buttonNewRecipe);
         newRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewRecipeFragment newRecipeFragment = NewRecipeFragment.newInstance();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container_main, newRecipeFragment);
-                transaction.addToBackStack("New recipe");
-                transaction.commit();
+                Fragment newFragment = new NewRecipeFragment();
+                FragmentTransaction ftNewRecipe = getFragmentManager().beginTransaction();
+                ftNewRecipe.setCustomAnimations(R.anim.enter_anim, R.anim.exit_anim);
+                ftNewRecipe.replace(R.id.container,newFragment);
+                ftNewRecipe.addToBackStack(null);
+                ftNewRecipe.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ftNewRecipe.commit();
             }
         });
         return view;
@@ -75,5 +73,14 @@ public class RecipesFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         dbController.close();
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        dbController.deleteRowRecipe(id);
+        Cursor c = dbController.getRecipes();
+        recipesAdapter = new RecipesAdapter(getActivity(), c, true);
+        listRecipes.setAdapter(recipesAdapter);
+        return false;
     }
 }

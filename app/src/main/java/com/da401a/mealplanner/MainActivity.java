@@ -1,6 +1,7 @@
 package com.da401a.mealplanner;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -48,18 +49,39 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.menu_about:
-                break;
+        Fragment newFragment = null;
+
+        switch(item.getItemId()){
             case R.id.action_recipes:
-                fragmentManager = getFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                recipesFragment = new RecipesFragment();
-                transaction.replace(R.id.container, recipesFragment);
-                transaction.commit();
+                newFragment= new RecipesFragment();
+                FragmentTransaction ftRecipe = getFragmentManager().beginTransaction();
+                ftRecipe.replace(R.id.container,newFragment);
+                ftRecipe.addToBackStack(null);
+                ftRecipe.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ftRecipe.commit();
+                return true;
+            case R.id.shoplist:
+                newFragment= new FoodFragment();
+                FragmentTransaction ftFood = getFragmentManager().beginTransaction();
+                ftFood.replace(R.id.container,newFragment);
+                ftFood.addToBackStack(null);
+                ftFood.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ftFood.commit();
+                return true;
+            case R.id.add_meal:
+                newFragment= new AddMealFragment();
+                FragmentTransaction ftAdd = getFragmentManager().beginTransaction();
+                ftAdd.replace(R.id.container,newFragment);
+                ftAdd.addToBackStack(null);
+                ftAdd.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ftAdd.commit();
+                return true;
+            case R.id.menu_about:
+                return true;
+            default:
                 break;
         }
-        
+
         return super.onOptionsItemSelected(item);
     }
 }
