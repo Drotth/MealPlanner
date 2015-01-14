@@ -6,7 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Mattias and Sebastian on 2015-01-12.
@@ -37,6 +41,8 @@ public class DBController extends SQLiteOpenHelper {
     private static final String CREATETABLE_WEEKMEAL = "CREATE TABLE " + TABLE_WEEKMEAL +
             "(_id integer primary key autoincrement, " +
             "DateToEat text not null," +
+            "Week integer not null," +
+            "WeekDay integer not null," +
             "RecipeName text not null);";
 
     @Override
@@ -97,7 +103,21 @@ public class DBController extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
+        String format = "yyyyMMdd";
+        SimpleDateFormat df = new SimpleDateFormat(format);
+        Date dateObj = null;
+        try{
+            dateObj = df.parse(date);
+        }catch(ParseException exception){}
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dateObj);
+        int week = cal.get(Calendar.WEEK_OF_YEAR);
+        int weekDay = cal.get(Calendar.DAY_OF_WEEK);
+
         values.put("DateToEat", date);
+        values.put("Week", week);
+        values.put("WeekDay", weekDay);
         values.put("RecipeName",meal);
 
         // Insert the new row, returning the primary key value of the new row
@@ -128,7 +148,7 @@ public class DBController extends SQLiteOpenHelper {
     public Cursor getWeekMeal(){
         return db.query(
                 "Weekmeal",
-                new String[]{"_id", "DateToEat", "RecipeName"},
+                new String[]{"_id", "DateToEat", "Week", "WeekDay", "RecipeName"},
                 null, null, null, null, null);
     }
 

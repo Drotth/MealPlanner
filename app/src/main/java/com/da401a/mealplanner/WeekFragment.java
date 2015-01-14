@@ -1,6 +1,7 @@
 package com.da401a.mealplanner;
 
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -45,42 +46,61 @@ public class WeekFragment extends Fragment {
     }
 
     private void prepareListData() {
+        ArrayList<String> tempWeeks = new ArrayList<String>();
+        ArrayList<String> tempDays = new ArrayList<String>();
+        ArrayList<String> tempRecipes = new ArrayList<String>();
 
         Cursor c = dbController.getWeekMeal();
 
-//        if(c != null && c.moveToFirst());
-//        do {
-//            c.getString(0).toString();
-//        }while (c.moveToNext());
+        if(c != null && c.moveToFirst());
+        do {
+            try {
+                tempWeeks.add(c.getString(2));
+                tempDays.add(c.getString(3));
+                tempRecipes.add(c.getString(4));
+            } catch (CursorIndexOutOfBoundsException exception){}
+        }while (c.moveToNext());
 
         listDataWeeks = new ArrayList<String>();
         listDataDays = new HashMap<String, List<String>>();
 
-        listDataWeeks.add("Vecka 3");
-        listDataWeeks.add("Vecka 4");
-        listDataWeeks.add("Vecka 5");
+        listDataWeeks.add("Weeks");
+        listDataWeeks.add("Days");
+        listDataWeeks.add("Recipes");
 
-        List<String> Vecka_3 = new ArrayList<String>();
-        Vecka_3.add("Korv Stroganoff");
-        Vecka_3.add("Kötbullar med mos");
-        Vecka_3.add("Lugnt, mamma fixar");
-        Vecka_3.add("Marabou hela dagen");
-        Vecka_3.add("Sibylla");
-        Vecka_3.add("Kanske dags för riktig mat?");
-        Vecka_3.add(".. Not really");
+        listDataDays.put(listDataWeeks.get(0), tempWeeks);
+        listDataDays.put(listDataWeeks.get(1), tempDays);
+        listDataDays.put(listDataWeeks.get(2), tempRecipes);
 
-        List<String> Vecka_4 = new ArrayList<String>();
-        Vecka_4.add("Ny vecka, nya vanor!");
-        Vecka_4.add("Köttbullar med mos");
-        Vecka_4.add("Korv stroganoff");
-        Vecka_4.add("Nudlar");
 
-        List<String> Vecka_5 = new ArrayList<String>();
-        Vecka_5.add("Nudlar");
-        Vecka_5.add("Mer nudlar..");
-
-        listDataDays.put(listDataWeeks.get(0), Vecka_3);
-        listDataDays.put(listDataWeeks.get(1), Vecka_4);
-        listDataDays.put(listDataWeeks.get(2), Vecka_5);
+//        listDataWeeks = new ArrayList<String>();
+//        listDataDays = new HashMap<String, List<String>>();
+//
+//        listDataWeeks.add("Vecka 3");
+//        listDataWeeks.add("Vecka 4");
+//        listDataWeeks.add("Vecka 5");
+//
+//        List<String> Vecka_3 = new ArrayList<String>();
+//        Vecka_3.add("Korv Stroganoff");
+//        Vecka_3.add("Kötbullar med mos");
+//        Vecka_3.add("Lugnt, mamma fixar");
+//        Vecka_3.add("Marabou hela dagen");
+//        Vecka_3.add("Sibylla");
+//        Vecka_3.add("Kanske dags för riktig mat?");
+//        Vecka_3.add(".. Not really");
+//
+//        List<String> Vecka_4 = new ArrayList<String>();
+//        Vecka_4.add("Ny vecka, nya vanor!");
+//        Vecka_4.add("Köttbullar med mos");
+//        Vecka_4.add("Korv stroganoff");
+//        Vecka_4.add("Nudlar");
+//
+//        List<String> Vecka_5 = new ArrayList<String>();
+//        Vecka_5.add("Nudlar");
+//        Vecka_5.add("Mer nudlar..");
+//
+//        listDataDays.put(listDataWeeks.get(0), Vecka_3);
+//        listDataDays.put(listDataWeeks.get(1), Vecka_4);
+//        listDataDays.put(listDataWeeks.get(2), Vecka_5);
     }
 }
