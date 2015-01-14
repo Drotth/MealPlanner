@@ -1,8 +1,5 @@
 package com.da401a.mealplanner;
 
-/**
- * Created by Mattias on 2015-01-13.
- */
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;

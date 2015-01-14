@@ -13,22 +13,24 @@
             android:id="@+id/dayItemIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="5dp"
+            android:paddingRight="3dp"
             android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
             android:textSize="25sp"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:background="@color/orange"/>
+            android:background="@color/gray"/>
 
         <TextView
             android:id="@+id/dayItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
+            android:layout_gravity="center"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="7dp"
             android:textSize="20sp"
-            android:background="@color/yellow"/>
+            android:background="@color/white"/>
 
         </LinearLayout>
 

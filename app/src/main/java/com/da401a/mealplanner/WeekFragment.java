@@ -1,5 +1,6 @@
 package com.da401a.mealplanner;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,9 +21,14 @@ public class WeekFragment extends Fragment {
     List<String> listDataWeeks;
     HashMap<String, List<String>> listDataDays;
 
+    private DBController dbController;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dbController = new DBController(getActivity());
+        dbController.open();
     }
 
     @Override
@@ -39,6 +45,14 @@ public class WeekFragment extends Fragment {
     }
 
     private void prepareListData() {
+
+        Cursor c = dbController.getWeekMeal();
+
+//        if(c != null && c.moveToFirst());
+//        do {
+//            c.getString(0).toString();
+//        }while (c.moveToNext());
+
         listDataWeeks = new ArrayList<String>();
         listDataDays = new HashMap<String, List<String>>();
 
