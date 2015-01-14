@@ -4,6 +4,7 @@ package com.da401a.mealplanner;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -138,7 +139,9 @@ public class AddMealFragment extends Fragment implements AdapterView.OnItemSelec
         Cursor c = dbController.getRecipeName();
         if(c != null && c.moveToFirst());
         do{
-            recipesList.add(c.getString(0).toString());
+            try {
+                recipesList.add(c.getString(0));
+            } catch (CursorIndexOutOfBoundsException exception){}
         }while (c.moveToNext());
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, recipesList);
