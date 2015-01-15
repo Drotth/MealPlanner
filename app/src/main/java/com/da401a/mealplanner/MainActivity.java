@@ -12,11 +12,8 @@ import android.view.ViewConfiguration;
 import java.lang.reflect.Field;
 
 public class MainActivity extends Activity {
-    private FragmentManager fragmentManager;
-    private RecipesFragment recipesFragment;
-
-    FragmentManager fm;
-    WeekFragment weeks;
+    private FragmentManager fm;
+    private WeekFragment weeks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +23,7 @@ public class MainActivity extends Activity {
         weeks = new WeekFragment();
 
         // Force the Overflow Menu to show even on phones with dedicated menu button
+        // Used when debugging GUI
         try {
             ViewConfiguration config = ViewConfiguration.get(this);
             Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
@@ -49,35 +47,39 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Fragment newFragment = null;
+        Fragment newFragment;
 
         switch(item.getItemId()){
             case R.id.action_recipes:
-                newFragment= new RecipesFragment();
+                newFragment = new RecipesFragment();
                 FragmentTransaction ftRecipe = getFragmentManager().beginTransaction();
+                ftRecipe.setCustomAnimations(R.anim.enter_anim, R.anim.exit_anim);
                 ftRecipe.replace(R.id.container,newFragment);
                 ftRecipe.addToBackStack(null);
                 ftRecipe.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ftRecipe.commit();
                 return true;
+
             case R.id.shoplist:
-                newFragment= new FoodFragment();
+                newFragment = new FoodFragment();
                 FragmentTransaction ftFood = getFragmentManager().beginTransaction();
+                ftFood.setCustomAnimations(R.anim.enter_anim, R.anim.exit_anim);
                 ftFood.replace(R.id.container,newFragment);
                 ftFood.addToBackStack(null);
                 ftFood.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ftFood.commit();
                 return true;
+
             case R.id.add_meal:
-                newFragment= new AddMealFragment();
+                newFragment = new AddMealFragment();
                 FragmentTransaction ftAdd = getFragmentManager().beginTransaction();
+                ftAdd.setCustomAnimations(R.anim.enter_anim, R.anim.exit_anim);
                 ftAdd.replace(R.id.container,newFragment);
                 ftAdd.addToBackStack(null);
                 ftAdd.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ftAdd.commit();
                 return true;
-            case R.id.menu_about:
-                return true;
+
             default:
                 break;
         }

@@ -12,65 +12,70 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/editTextNewRecName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/new_rec_name"
-            android:id="@+id/editTextNewRecName"
+            android:inputType="textCapSentences"
             android:layout_margin="5dp"
             android:padding="10dp"/>
 
         <EditText
-            android:text="blabla"
+            android:id="@+id/editTextNewRecDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/new_rec_desc"
-            android:id="@+id/editTextNewRecDesc"
+            android:inputType="textCapSentences|textMultiLine"
+            android:singleLine="false"
             android:layout_margin="5dp"
             android:padding="10dp"/>
 
         <EditText
-            android:text="blabla"
+            android:id="@+id/editTextNewRecMeat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/new_rec_meat"
-            android:id="@+id/editTextNewRecMeat"
+            android:inputType="textCapSentences"
             android:layout_margin="5dp"
             android:padding="10dp"/>
 
         <EditText
-            android:text="blabla"
+            android:id="@+id/editTextNewRecAcc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/new_rec_acc"
-            android:id="@+id/editTextNewRecAcc"
+            android:inputType="textCapSentences"
             android:layout_margin="5dp"
             android:padding="10dp"/>
 
         <EditText
-            android:text="blabla"
+            android:id="@+id/editTextNewRecVeg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/new_rec_veg"
-            android:id="@+id/editTextNewRecVeg"
+            android:inputType="textCapSentences"
             android:layout_margin="5dp"
             android:padding="10dp"/>
 
         <EditText
-            android:text="blabla"
+            android:id="@+id/editTextNewRecDrink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/new_rec_drink"
-            android:id="@+id/editTextNewRecDrink"
+            android:inputType="textCapSentences"
             android:layout_margin="5dp"
             android:padding="10dp"/>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
         <Button
+            android:id="@+id/buttonNewRecipeInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Done"
-            android:id="@+id/buttonNewRecipeInput"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="@string/done" />
 
     </LinearLayout>
 

@@ -1,6 +1,5 @@
 package com.da401a.mealplanner;
 
-import android.app.DialogFragment;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,16 +10,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class NewRecipeFragment extends Fragment {
     private EditText name, desc, meat, acc, veg, drink;
     private DBController dbController;
 
-    public NewRecipeFragment() {
-        // Required empty public constructor
-    }
+    // Required empty public constructor
+    public NewRecipeFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,7 +39,7 @@ public class NewRecipeFragment extends Fragment {
                 String newDrink = drink.getText().toString();
                 if(newName.isEmpty() || newDesc.isEmpty() || newMeat.isEmpty()
                         || newAcc.isEmpty() || newVeg.isEmpty() || newDrink.isEmpty()){
-                    Toast.makeText(getActivity(), "You have to fill in all fields",
+                    Toast.makeText(getActivity(), "All fields need to be filled!",
                             Toast.LENGTH_SHORT).show();
                 } else {
                     dbController.dataIntoRecipe(newName, newDesc, newMeat, newAcc, newVeg, newDrink);

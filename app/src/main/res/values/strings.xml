@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- General -->
     <string name="app_name">Meal Planner</string>
-    <string name="menu_about">About</string>
-    <string name="action_recipes">Recipes</string>
-    <string name="shopping_list">Shopping list</string>
-    <string name="add_meal">Add a new meal to weekday</string>
-    <string name="buttonNewRecipe">Add a new recipe</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="new_rec_name">Enter name of new recipe</string>
-    <string name="new_rec_desc">Enter a description of the recipe</string>
-    <string name="new_rec_meat">What meat should be in the recipe?</string>
-    <string name="new_rec_acc">What accessories should be in the recipe?</string>
-    <string name="new_rec_veg">What vegetables should be in the recipe?</string>
+    <string name="add">Add</string>
+    <string name="done">Done</string>
+    <string name="new_buy_item">Add item to buy</string>
+    <string name="menu_recipes">Recipes</string>
+    <string name="menu_shoppinglist">Shopping list</string>
+    <string name="menu_addmealtoday">Add a meal to a day</string>
+    <string name="new_recipe">New recipe</string>
+
+    <!-- New recipe fragment -->
+    <string name="new_rec_name">Lovely dish name?</string>
+    <string name="new_rec_desc">You got a creative description?</string>
+    <string name="new_rec_meat">What\'s the main ingredient?</string>
+    <string name="new_rec_acc">Any accessories?</string>
+    <string name="new_rec_veg">Some healthy vegetables?</string>
     <string name="new_rec_date">When will you make the recipe?</string>
-    <string name="new_rec_drink">Drinks for the meal?</string>
-    <string name="add">ADD</string>
-    <string name="to_shop">To shop</string>
-    <string name="select_meal">Select a meal</string>
-    <string name="select_date">Select a date for when to eat</string>
-    <string name="select_other">Recipe not in list or list empty? You can add a new one</string>
+    <string name="new_rec_drink">Something to drink?</string>
+
+    <!-- Add meal to date fragment -->
+    <string name="select_meal">What are you going to eat?</string>
+    <string name="select_date">When are you going to eat?</string>
+    <string name="no_recipe">Can\'t find the recipe you\'re looking for?\nMaybe
+        you haven\'t created it yet, do that now!</string>
 </resources>

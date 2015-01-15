@@ -1,18 +1,12 @@
 package com.da401a.mealplanner;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +14,7 @@ import java.util.List;
 public class WeekListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
-    private List<Integer> listDataWeeks = new ArrayList<>();
+    private ArrayList<Integer> listDataWeeks = new ArrayList<>();
     private HashMap<Integer, ArrayList<RecipeDay>> listDataDays = new HashMap<>();
     private ArrayList<RecipeDay> mainList;
 

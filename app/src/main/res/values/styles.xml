@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Application theme. -->
+    <!-- Application theme -->
     <style name="AppTheme" parent="android:Theme.Holo.Light">
-        <!--<item name="android:windowBackground">@color/lightOrange</item>-->
         <item name="android:actionBarStyle">@style/CustomActionBar</item>
         <item name="android:editTextStyle">@style/CustomEditText</item>
         <item name="android:buttonStyle">@style/CustomButton</item>
+        <item name="android:actionOverflowButtonStyle">@style/CustomOverFlowMenu</item>
+        <item name="android:spinnerStyle">@style/CustomSpinner</item>
+        <item name="android:listViewStyle">@style/CustomListView</item>
     </style>
 
-    <!-- ActionBar Style -->
+    <!-- ActionBar style -->
     <style name="CustomActionBar" parent="android:Widget.Holo.Light.ActionBar">
         <item name="android:background">@color/red</item>
         <item name="android:titleTextStyle">@style/CustomTitleText</item>
+    </style>
+
+    <!-- OverFlow Menu style -->
+    <style name="CustomOverFlowMenu" parent="android:style/Widget.Holo.ActionButton.Overflow">
     </style>
 
     <!-- Title Text style -->
@@ -27,8 +33,23 @@
         <item name="android:singleLine">true</item>
     </style>
 
-    <!-- Button Style -->
+    <!-- Spinner style-->
+    <style name="CustomSpinner" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@color/white</item>
+        <item name="android:ems">15</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <!-- Button style -->
     <style name="CustomButton" parent="android:style/Widget.Holo.Light.Button">
         <item name="android:background">@drawable/custom_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- ListView style -->
+    <style name="CustomListView" parent="android:style/Widget.Holo.Light.ListView">
+        <item name="android:divider">@color/lightRed</item>
+        <item name="android:dividerHeight">3dp</item>
     </style>
 </resources>

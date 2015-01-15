@@ -1,13 +1,11 @@
 package com.da401a.mealplanner;
 
-
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,33 +20,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class AddMealFragment extends Fragment{
     private DBController dbController;
     private EditText date;
     private String resultSpinner = "";
     private List<String> recipesList;
     private Spinner spinner;
-
     private ArrayAdapter<String> arrayAdapter;
 
-    public AddMealFragment() {
-        // Required empty public constructor
-    }
-
+    // Required empty public constructor
+    public AddMealFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_meal, container, false);
         date = (EditText) view.findViewById(R.id.editTextAddMealSelectDate);
 
         Button buttonDone = (Button) view.findViewById(R.id.buttonAddMealDone);
         Button newRecipe = (Button) view.findViewById(R.id.buttonAddMealNew);
-        EditText editDateSelect = (EditText) view.findViewById(R.id.editTextAddMealSelectDate);
         spinner = (Spinner) view.findViewById(R.id.spinnerShowRecipes);
 
         buttonDone.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +69,7 @@ public class AddMealFragment extends Fragment{
             }
         });
 
-        editDateSelect.setOnClickListener(new View.OnClickListener() {
+        date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment newFragment = new DatePickerFragment();
@@ -88,11 +77,12 @@ public class AddMealFragment extends Fragment{
             }
         });
 
-        arrayAdapter = new ArrayAdapter<String> (getActivity(),
+        arrayAdapter = new ArrayAdapter<> (getActivity(),
                 android.R.layout.simple_list_item_1, recipesList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
         arrayAdapter.setNotifyOnChange(true);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 resultSpinner = parent.getItemAtPosition(position).toString();
@@ -110,8 +100,10 @@ public class AddMealFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
+
         dbController.open();
         recipesList.clear();
+
         Cursor c = dbController.getRecipeName();
         if(c != null && c.moveToFirst());
         do{
@@ -130,9 +122,11 @@ public class AddMealFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         dbController = new DBController(getActivity());
         dbController.open();
         recipesList = new ArrayList<String>();
+
         Cursor c = dbController.getRecipeName();
         if(c != null && c.moveToFirst());
         do{

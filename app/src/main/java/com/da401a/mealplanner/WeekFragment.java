@@ -7,13 +7,9 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 
 public class WeekFragment extends Fragment {
 
@@ -21,7 +17,6 @@ public class WeekFragment extends Fragment {
     private WeekListAdapter weekListAdapter;
     private DBController dbController;
     private ArrayList<RecipeDay> mainList = new ArrayList<>();
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +34,7 @@ public class WeekFragment extends Fragment {
 
         weekListView = (ExpandableListView) view.findViewById(R.id.weeksList);
         weekListView.setAdapter(weekListAdapter);
-        weekListView.expandGroup(0);
+        if(!mainList.isEmpty()) weekListView.expandGroup(0);
 
         return view;
     }

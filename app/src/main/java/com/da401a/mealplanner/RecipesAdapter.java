@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-/**
- * Created by Mattias on 2015-01-12.
- */
 public class RecipesAdapter extends CursorAdapter {
     public RecipesAdapter(Context context, Cursor c, boolean autoRequery) {
         super(context, c, autoRequery);
@@ -34,8 +31,8 @@ public class RecipesAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         ViewHolder holder = (ViewHolder) view.getTag();
 
-        holder.name.setText("Name: " + cursor.getString(1));
-        holder.desc.setText("Desc: " + cursor.getString(2));
+        holder.name.setText(cursor.getString(1));
+        holder.desc.setText(cursor.getString(2));
         holder.meat.setText("Meat: " + cursor.getString(3));
         holder.acc.setText("Accessories: " + cursor.getString(4));
         holder.veg.setText("Vegetables: " + cursor.getString(5));

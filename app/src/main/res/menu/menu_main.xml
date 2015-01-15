@@ -3,22 +3,17 @@
     tools:context=".MainActivity">
 
     <item android:id="@+id/action_recipes"
-        android:title="@string/action_recipes"
+        android:title="@string/menu_recipes"
         android:orderInCategory="1"
         android:showAsAction="never" />
 
     <item android:id="@+id/shoplist"
-        android:title="@string/shopping_list"
+        android:title="@string/menu_shoppinglist"
         android:orderInCategory="2"
         android:showAsAction="never"/>
 
     <item android:id="@+id/add_meal"
-        android:title="@string/add_meal"
+        android:title="@string/menu_addmealtoday"
         android:orderInCategory="3"
         android:showAsAction="never"/>
-
-    <item android:id="@+id/menu_about"
-        android:title="@string/menu_about"
-        android:orderInCategory="4"
-        android:showAsAction="never" />
 </menu>
