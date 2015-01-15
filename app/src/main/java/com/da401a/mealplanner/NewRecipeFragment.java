@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 public class NewRecipeFragment extends Fragment {
     private EditText name, desc, meat, acc, veg, drink;
     private DBController dbController;
@@ -28,6 +27,7 @@ public class NewRecipeFragment extends Fragment {
         veg = (EditText) view.findViewById(R.id.editTextNewRecVeg);
         drink = (EditText) view.findViewById(R.id.editTextNewRecDrink);
         Button buttonInput = (Button) view.findViewById(R.id.buttonNewRecipeInput);
+
         buttonInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

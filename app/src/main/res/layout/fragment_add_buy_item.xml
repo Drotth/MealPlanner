@@ -1,7 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="@dimen/activity_horizontal_margin"
     tools:context="com.da401a.mealplanner.InsertShoppingListFragment">
 
@@ -9,25 +10,30 @@
         android:id="@+id/editText_Product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Product"
-        android:layout_below="@+id/editTextShoppinglistDate"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:hint="@string/buy_product"/>
 
     <EditText
         android:id="@+id/editTextShoppinglistDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Date to buy"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:inputType="date"
+        android:hint="@string/buy_date"/>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
 
     <Button
         android:id="@+id/create_new_product"
-        android:text="@string/add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_Product"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_gravity="center_horizontal"
+        android:text="@string/add" />
 
-</RelativeLayout>
+</LinearLayout>

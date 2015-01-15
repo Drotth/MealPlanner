@@ -11,38 +11,29 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
-
 public class FoodFragment extends Fragment implements ListView.OnItemLongClickListener{
     private ListView shoppingList;
     private ShoppingListAdapter sAdapter;
     private DBController dbController;
 
-
-
-
-
-    public FoodFragment() {
-        // Required empty public constructor
-    }
+    // Required empty public constructor
+    public FoodFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         dbController =new DBController(getActivity());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
         dbController.open();
 
         Cursor c = dbController.getShopList();
         sAdapter = new ShoppingListAdapter(getActivity(), c, true);
         shoppingList.setAdapter(sAdapter);
     }
-
 
     @Override
     public void onPause() {
@@ -53,10 +44,9 @@ public class FoodFragment extends Fragment implements ListView.OnItemLongClickLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_food, container, false);
+        View root = inflater.inflate(R.layout.fragment_shopping_list, container, false);
 
-        shoppingList=(ListView)root.findViewById(R.id.listViewShop);
+        shoppingList = (ListView) root.findViewById(R.id.listViewShop);
         shoppingList.setAdapter(sAdapter);
         shoppingList.setOnItemLongClickListener(this);
 

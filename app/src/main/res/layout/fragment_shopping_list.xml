@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/activity_horizontal_margin"
-    tools:context="com.da401a.mealplanner.RecipesFragment">
+    tools:context="com.da401a.mealplanner.FoodFragment">
 
     <ListView
-        android:id="@+id/listViewRecipes"
+        android:id="@+id/listViewShop"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
@@ -17,10 +17,10 @@
         android:layout_height="30dp" />
 
     <Button
-        android:id="@+id/buttonNewRecipe"
+        android:id="@+id/toShop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:text="@string/new_recipe"/>
+        android:text="@string/new_buy_item" />
 
 </LinearLayout>

@@ -1,8 +1,6 @@
 package com.da401a.mealplanner;
 
-import android.app.Activity;
 import android.app.DialogFragment;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 
 public class InsertShoppingListFragment extends Fragment {
     private EditText date, product;
@@ -33,7 +30,7 @@ public class InsertShoppingListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root =  inflater.inflate(R.layout.fragment_insert_shopping_list, container, false);
+        View root =  inflater.inflate(R.layout.fragment_add_buy_item, container, false);
 
         product = (EditText) root.findViewById(R.id.editText_Product);
         date = (EditText) root.findViewById(R.id.editTextShoppinglistDate);
@@ -45,36 +42,24 @@ public class InsertShoppingListFragment extends Fragment {
             public void onClick(View v) {
                 String newProduct = product.getText().toString();
                 String newDate = date.getText().toString();
-                if(newProduct.isEmpty() || newDate.isEmpty()){
-                    Toast.makeText(getActivity(), "You have to fill in all fields",
+
+                if (newProduct.isEmpty() || newDate.isEmpty()){
+                    Toast.makeText(getActivity(), R.string.all_fields,
                             Toast.LENGTH_SHORT).show();
                 }
                 else{
                     dbController.dataIntoShoppingList(newProduct, newDate);
                     getFragmentManager().popBackStackImmediate();
                 }
-
             }
         });
 
-
-        EditText editDateSelect = (EditText) root.findViewById(R.id.editTextShoppinglistDate);
-        editDateSelect.setOnClickListener(new View.OnClickListener() {
+        date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment newFragment = new DatePickerFragment();
                 newFragment.show(getFragmentManager(), "datePicker");
             }
-
-            /*
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    showDialog(DIALOG_DATE_PICKER);
-                }
-                return false;
-            }
-            */
         });
 
         return root;
@@ -83,7 +68,6 @@ public class InsertShoppingListFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-
         dbController.close();
     }
 

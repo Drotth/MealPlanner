@@ -1,6 +1,5 @@
 package com.da401a.mealplanner;
 
-
 import android.app.FragmentTransaction;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -12,18 +11,13 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class RecipesFragment extends Fragment implements ListView.OnItemLongClickListener{
     private DBController dbController;
     private ListView listRecipes;
     private RecipesAdapter recipesAdapter;
 
-    public RecipesFragment() {
-        // Required empty public constructor
-    }
+    // Required empty public constructor
+    public RecipesFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,6 +27,7 @@ public class RecipesFragment extends Fragment implements ListView.OnItemLongClic
         listRecipes.setAdapter(recipesAdapter);
         listRecipes.setOnItemLongClickListener(this);
         Button newRecipe = (Button) view.findViewById(R.id.buttonNewRecipe);
+
         newRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +40,7 @@ public class RecipesFragment extends Fragment implements ListView.OnItemLongClic
                 ftNewRecipe.commit();
             }
         });
+
         return view;
     }
 

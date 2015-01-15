@@ -19,13 +19,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class AddMealFragment extends Fragment{
     private DBController dbController;
     private EditText date;
     private String resultSpinner = "";
     private List<String> recipesList;
-    private Spinner spinner;
     private ArrayAdapter<String> arrayAdapter;
 
     // Required empty public constructor
@@ -35,37 +33,26 @@ public class AddMealFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_meal, container, false);
-        date = (EditText) view.findViewById(R.id.editTextAddMealSelectDate);
 
+        date = (EditText) view.findViewById(R.id.editTextAddMealSelectDate);
         Button buttonDone = (Button) view.findViewById(R.id.buttonAddMealDone);
         Button newRecipe = (Button) view.findViewById(R.id.buttonAddMealNew);
-        spinner = (Spinner) view.findViewById(R.id.spinnerShowRecipes);
+        Spinner spinner = (Spinner) view.findViewById(R.id.spinnerShowRecipes);
 
         buttonDone.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick (View v) {
                 String newDate = date.getText().toString();
-                if(newDate.isEmpty() || resultSpinner.isEmpty()){
-                    Toast.makeText(getActivity(), "You have to fill in all fields",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    dbController.dataIntoWeekMeal(newDate, resultSpinner);
-                    date.setText("");
-                    ((MainActivity) getActivity()).updateWeekList();
-                }
-            }
-        });
 
-        newRecipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment newFragment = new NewRecipeFragment();
-                FragmentTransaction ftAddMeal = getFragmentManager().beginTransaction();
-                ftAddMeal.setCustomAnimations(R.anim.enter_anim, R.anim.exit_anim);
-                ftAddMeal.replace(R.id.container,newFragment);
-                ftAddMeal.addToBackStack(null);
-                ftAddMeal.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ftAddMeal.commit();
+                if (newDate.isEmpty() || resultSpinner.isEmpty()) {
+                    Toast.makeText(getActivity(), R.string.all_fields, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    dbController.dataIntoWeekMeal(newDate, resultSpinner);
+                    ((MainActivity) getActivity()).updateWeekList();
+                    getFragmentManager().popBackStackImmediate();
+
+                }
             }
         });
 
@@ -90,7 +77,19 @@ public class AddMealFragment extends Fragment{
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
+        newRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment newFragment = new NewRecipeFragment();
+                FragmentTransaction ftAddMeal = getFragmentManager().beginTransaction();
+                ftAddMeal.setCustomAnimations(R.anim.enter_anim, R.anim.exit_anim);
+                ftAddMeal.replace(R.id.container,newFragment);
+                ftAddMeal.addToBackStack(null);
+                ftAddMeal.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ftAddMeal.commit();
             }
         });
 

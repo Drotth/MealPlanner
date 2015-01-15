@@ -13,8 +13,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
         android:padding="10dp"
-        android:hint="@string/select_date"
-        android:inputType="date" />
+        android:inputType="date"
+        android:hint="@string/select_date"/>
 
     <Spinner
         android:id="@+id/spinnerShowRecipes"
@@ -44,6 +44,7 @@
         android:layout_gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/no_recipe" />
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="30dp" />
@@ -54,4 +55,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/new_recipe" />
+
 </LinearLayout>

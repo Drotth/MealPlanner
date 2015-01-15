@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class WeekListAdapter extends BaseExpandableListAdapter {
 

@@ -15,7 +15,7 @@ public class RecipesAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recipesrow, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_recipe, parent, false);
         ViewHolder holder = new ViewHolder();
         holder.name = (TextView) view.findViewById(R.id.rowRecipeName);
         holder.desc = (TextView) view.findViewById(R.id.rowRecipeDesc);
