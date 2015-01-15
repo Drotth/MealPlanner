@@ -84,4 +84,8 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void updateWeekList(){
+        weeks.updateList();
+    }
 }

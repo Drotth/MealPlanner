@@ -1,6 +1,8 @@
 package com.da401a.mealplanner;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,9 +20,8 @@ import java.util.List;
 public class WeekListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
-    private List<String> listDataWeeks = new ArrayList<String>();
-    private HashMap<String, ArrayList<RecipeDay>> listDataDays =
-            new HashMap<String, ArrayList<RecipeDay>>();
+    private List<Integer> listDataWeeks = new ArrayList<>();
+    private HashMap<Integer, ArrayList<RecipeDay>> listDataDays = new HashMap<>();
     private ArrayList<RecipeDay> mainList;
 
     public WeekListAdapter(Context context, ArrayList<RecipeDay> list) {
@@ -27,15 +29,15 @@ public class WeekListAdapter extends BaseExpandableListAdapter {
         this.mainList = list;
 
         for (int i = 0; i < mainList.size(); i++){
-            if (!checkWeek(mainList.get(i).getWeek())){
-                String week = "Week " + mainList.get(i).getWeek();
+            int week = mainList.get(i).getWeek();
+            if (!checkWeek(week)){
                 listDataWeeks.add(week);
                 listDataDays.put(week, new ArrayList<RecipeDay>());
             }
         }
 
         for (int i = 0; i <mainList.size(); i++){
-            listDataDays.get("Week " + mainList.get(i).getWeek()).add(mainList.get(i));
+            listDataDays.get(mainList.get(i).getWeek()).add(mainList.get(i));
         }
     }
 
@@ -50,14 +52,33 @@ public class WeekListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
+    public void notifyDataSetChanged() {
+        listDataDays.clear();
+        listDataWeeks.clear();
+
+        for (int i = 0; i < mainList.size(); i++){
+            int week = mainList.get(i).getWeek();
+            if (!checkWeek(week)){
+                listDataWeeks.add(week);
+                listDataDays.put(week, new ArrayList<RecipeDay>());
+            }
+        }
+
+        for (int i = 0; i <mainList.size(); i++){
+            listDataDays.get(mainList.get(i).getWeek()).add(mainList.get(i));
+        }
+
+        super.notifyDataSetChanged();
+    }
+
+    @Override
     public int getGroupCount() {
         return listDataWeeks.size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return listDataDays.get(listDataWeeks.get(groupPosition))
-                .size();
+        return listDataDays.get(listDataWeeks.get(groupPosition)).size();
     }
 
     @Override
@@ -87,7 +108,8 @@ public class WeekListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        String headerTitle = (String) getGroup(groupPosition);
+        String headerTitle = "Week " + getGroup(groupPosition);
+
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -113,13 +135,13 @@ public class WeekListAdapter extends BaseExpandableListAdapter {
         TextView dayIcon = (TextView) convertView.findViewById(R.id.dayItemIcon);
         TextView dayChild = (TextView) convertView.findViewById(R.id.dayItem);
         switch (child.getDay()){
-            case 1: dayIcon.setText("S"); break;
-            case 2: dayIcon.setText("M"); break;
-            case 3: dayIcon.setText("T"); break;
-            case 4: dayIcon.setText("W"); break;
-            case 5: dayIcon.setText("T"); break;
-            case 6: dayIcon.setText("F"); break;
-            case 7: dayIcon.setText("S"); break;
+            case 1: dayIcon.setText("Mon"); break;
+            case 2: dayIcon.setText("Tue"); break;
+            case 3: dayIcon.setText("Wed"); break;
+            case 4: dayIcon.setText("Thu"); break;
+            case 5: dayIcon.setText("Fri"); break;
+            case 6: dayIcon.setText("Sat"); break;
+            case 7: dayIcon.setText("Sun"); break;
         }
         dayChild.setText(child.getRecipe());
         return convertView;

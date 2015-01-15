@@ -11,10 +11,10 @@
 
         <TextView
             android:id="@+id/dayItemIcon"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:paddingRight="3dp"
-            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+            android:paddingLeft="5dp"
             android:textSize="25sp"
             android:layout_gravity="center"
             android:textStyle="bold"

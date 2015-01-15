@@ -20,6 +20,7 @@
             android:padding="10dp"/>
 
         <EditText
+            android:text="blabla"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/new_rec_desc"
@@ -28,6 +29,7 @@
             android:padding="10dp"/>
 
         <EditText
+            android:text="blabla"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/new_rec_meat"
@@ -36,6 +38,7 @@
             android:padding="10dp"/>
 
         <EditText
+            android:text="blabla"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/new_rec_acc"
@@ -44,6 +47,7 @@
             android:padding="10dp"/>
 
         <EditText
+            android:text="blabla"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/new_rec_veg"
@@ -52,6 +56,7 @@
             android:padding="10dp"/>
 
         <EditText
+            android:text="blabla"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/new_rec_drink"

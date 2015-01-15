@@ -12,9 +12,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by Mattias and Sebastian on 2015-01-12.
- */
 public class DBController extends SQLiteOpenHelper {
     private SQLiteDatabase db;
     private static final String TAG ="MyActivity" ;
@@ -72,8 +69,6 @@ public class DBController extends SQLiteOpenHelper {
         db.close();
     }
 
-
-
     public long dataIntoRecipe(String name, String desc, String meat,
                                String acc, String veg, String drink) {
         ContentValues values = new ContentValues();
@@ -87,20 +82,15 @@ public class DBController extends SQLiteOpenHelper {
     }
 
     public long dataIntoShoppingList(String product,String date) {
-        // Create a new map of values, where column names are the keys
-
         ContentValues values = new ContentValues();
 
         values.put("ProductToBuy", product);
         values.put("DateToBuy",date);
 
-        // Insert the new row, returning the primary key value of the new row
         return db.insert("Shoppinglist",null,values);
     }
 
     public long dataIntoWeekMeal(String date, String meal) {
-        // Create a new map of values, where column names are the keys
-
         ContentValues values = new ContentValues();
 
         String format = "yyyyMMdd";
@@ -115,12 +105,15 @@ public class DBController extends SQLiteOpenHelper {
         int week = cal.get(Calendar.WEEK_OF_YEAR);
         int weekDay = cal.get(Calendar.DAY_OF_WEEK);
 
+        // This is due to the american week standard being different.
+        weekDay -= 1;
+        if (weekDay == 0) weekDay = 7;
+
         values.put("DateToEat", date);
         values.put("Week", week);
         values.put("WeekDay", weekDay);
         values.put("RecipeName",meal);
 
-        // Insert the new row, returning the primary key value of the new row
         return db.insert("Weekmeal",null,values);
     }
 
@@ -149,7 +142,9 @@ public class DBController extends SQLiteOpenHelper {
         return db.query(
                 "Weekmeal",
                 new String[]{"_id", "DateToEat", "Week", "WeekDay", "RecipeName"},
-                null, null, null, null, null);
+                null, null, null, null, "Week ASC, " + "WeekDay ASC");
+
+
     }
 
     public void removeShoppinglist(){

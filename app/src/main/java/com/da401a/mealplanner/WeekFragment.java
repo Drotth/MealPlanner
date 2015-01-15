@@ -17,13 +17,10 @@ import java.util.List;
 
 public class WeekFragment extends Fragment {
 
-    ExpandableListView weekListView;
-    ExpandableListAdapter weekListAdapter;
-    List<String> listDataWeeks;
-    HashMap<String, List<String>> listDataDays;
-
+    private ExpandableListView weekListView;
+    private WeekListAdapter weekListAdapter;
     private DBController dbController;
-    ArrayList<RecipeDay> mainList = new ArrayList<RecipeDay>();
+    private ArrayList<RecipeDay> mainList = new ArrayList<>();
 
 
     @Override
@@ -42,6 +39,7 @@ public class WeekFragment extends Fragment {
 
         weekListView = (ExpandableListView) view.findViewById(R.id.weeksList);
         weekListView.setAdapter(weekListAdapter);
+        weekListView.expandGroup(0);
 
         return view;
     }
@@ -53,9 +51,17 @@ public class WeekFragment extends Fragment {
     }
 
     @Override
-    public void onResume(){
-        super.onResume();
+    public void onStart(){
+        super.onStart();
         dbController.open();
+    }
+
+    public void updateList(){
+        dbController.open();
+        mainList.clear();
+        prepareListData();
+        weekListAdapter.notifyDataSetChanged();
+        dbController.close();
     }
 
     private void prepareListData() {

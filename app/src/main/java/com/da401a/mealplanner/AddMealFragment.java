@@ -62,6 +62,7 @@ public class AddMealFragment extends Fragment{
                 } else {
                     dbController.dataIntoWeekMeal(newDate, resultSpinner);
                     date.setText("");
+                    ((MainActivity) getActivity()).updateWeekList();
                 }
             }
         });
